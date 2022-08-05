@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 
 const TripList = ({ tripList }) => {
   // Make TripCards for each of the user's trips
-  const makeCards = (tripList) => {
+  const cards = (tripList) => {
     return tripList.map((trip) => {
       let location = `${trip.city}, ${trip.country}`;
       let dates = `${trip.start_date} - ${trip.end_date}`;
@@ -23,7 +23,7 @@ const TripList = ({ tripList }) => {
 
   return (
     <Grid container spacing={3} justifyContent="space-around">
-      {makeCards(tripList)}
+      {cards(tripList)}
     </Grid>
   );
 };
