@@ -31,6 +31,28 @@ const Trip = () => {
         );
       })
       .catch((error) => {
+        console.log(error.response);
+      });
+  };
+
+  const submitPlace = (placeInfo) => {
+    axios
+      .post(`${url}/trips/${tripID}/places/`, placeInfo)
+      .then((response) => {
+        console.log(response);
+        setTripDetails(response.data);
+        setScheduledPlaces(
+          response.data.places.filter((place) => {
+            return place.date !== null;
+          })
+        );
+        setUnscheduledPlaces(
+          response.data.places.filter((place) => {
+            return place.date === null;
+          })
+        );
+      })
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -53,7 +75,7 @@ const Trip = () => {
         </Container>
         <Container clasName="draft-conatiner">
           <Typography variant="h4">Places to Visit</Typography>
-          <PlaceForm />
+          <PlaceForm submitPlace={submitPlace} />
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
