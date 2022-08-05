@@ -38,7 +38,7 @@ const Trip = () => {
 
   return (
     <>
-      <Typography variant="h3">
+      <Typography variant="h3" mt={3} mb={3} className="title">
         Trip to {tripDetails.city}, {tripDetails.country}
       </Typography>
       <div className="trip-page-container">

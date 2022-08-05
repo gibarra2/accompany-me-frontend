@@ -8,10 +8,6 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import PlaceCard from './PlaceCard';
 
-// .filter((place) => {
-//   return place.time !== null;
-// })
-
 const DayTimeline = ({ places }) => {
   const TimelineItems = (places) => {
     return places.map((place) => {

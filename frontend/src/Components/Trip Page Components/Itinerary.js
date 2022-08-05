@@ -1,8 +1,9 @@
 import React from 'react';
 import DayTimeline from './DayTimeline';
+import Typography from '@mui/material/Typography';
 
 const Itinerary = ({ startDate, endDate, places }) => {
-  if ((places === undefined) | (places === {})) {
+  if ((places === undefined) | (places === [])) {
     return <></>;
   }
 
@@ -16,21 +17,15 @@ const Itinerary = ({ startDate, endDate, places }) => {
     let placesForDate = places.filter((place) => {
       return place.date === date;
     });
-    console.log(placesForDate);
     timelines.push(
       <>
-        <h1>{date}</h1>
+        <Typography variant="h6">{date}</Typography>
         <DayTimeline places={placesForDate} />
       </>
     );
   }
 
-  return (
-    <>
-      {/* <DayTimeline places={places} /> */}
-      {timelines}
-    </>
-  );
+  return <>{timelines}</>;
 };
 
 export default Itinerary;
