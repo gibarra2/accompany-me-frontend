@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import Itinerary from '../Components/Trip Page Components/Itinerary';
 import { useParams } from 'react-router-dom';
+import Itinerary from '../Components/Trip Page Components/Itinerary';
+import PlaceForm from '../Components/Trip Page Components/PlaceForm';
 import Container from '@mui/material/Container';
-import { Typography } from '@mui/material';
-import '../styles/TripPage.css';
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { url } from '../App';
+import '../styles/TripPage.css';
 
 const Trip = () => {
   let { tripID } = useParams();
   const [tripDetails, setTripDetails] = useState({});
   const [scheduledPlaces, setScheduledPlaces] = useState([]);
-  const [unschedulePlaces, setUnscheduledPlaces] = useState([]);
+  const [unscheduledPlaces, setUnscheduledPlaces] = useState([]);
 
   const getTripDetails = (ID) => {
     axios
@@ -52,6 +53,7 @@ const Trip = () => {
         </Container>
         <Container clasName="draft-conatiner">
           <Typography variant="h4">Places to Visit</Typography>
+          <PlaceForm />
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
