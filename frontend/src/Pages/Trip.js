@@ -10,12 +10,24 @@ import { url } from '../App';
 const Trip = () => {
   let { tripID } = useParams();
   const [tripDetails, setTripDetails] = useState({});
+  const [scheduledPlaces, setScheduledPlaces] = useState([]);
+  const [unschedulePlaces, setUnscheduledPlaces] = useState([]);
 
   const getTripDetails = (ID) => {
     axios
       .get(`${url}/trips/${ID}/`)
       .then((response) => {
         setTripDetails(response.data);
+        setScheduledPlaces(
+          response.data.places.filter((place) => {
+            return place.date !== null;
+          })
+        );
+        setUnscheduledPlaces(
+          response.data.places.filter((place) => {
+            return place.date === null;
+          })
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -35,7 +47,7 @@ const Trip = () => {
           <Itinerary
             startDate={tripDetails['start_date']}
             endDate={tripDetails['end_date']}
-            places={tripDetails.places}
+            places={scheduledPlaces}
           />
         </Container>
         <Container clasName="draft-conatiner">
