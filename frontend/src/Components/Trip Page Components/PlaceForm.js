@@ -13,7 +13,7 @@ import {
 } from '@mui/x-date-pickers';
 import format from 'date-fns/format';
 
-const PlaceForm = ({ submitPlace }) => {
+const PlaceForm = ({ submitPlace, setOpenPopup }) => {
   const defaultState = {
     name: '',
     address: '',
@@ -40,6 +40,7 @@ const PlaceForm = ({ submitPlace }) => {
     };
     submitPlace(requestBody);
     setFormFields(defaultState);
+    setOpenPopup(false);
   };
 
   return (

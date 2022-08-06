@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Itinerary from '../Components/Trip Page Components/Itinerary';
 import PlaceForm from '../Components/Trip Page Components/PlaceForm';
+import Popup from '../Components/Popup';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import { url } from '../App';
 import '../styles/TripPage.css';
@@ -13,6 +16,7 @@ const Trip = () => {
   const [tripDetails, setTripDetails] = useState({});
   const [scheduledPlaces, setScheduledPlaces] = useState([]);
   const [unscheduledPlaces, setUnscheduledPlaces] = useState([]);
+  const [toggleForm, setToggleForm] = useState(false);
 
   const getTripDetails = (ID) => {
     axios
@@ -74,13 +78,30 @@ const Trip = () => {
           />
         </Container>
         <Container clasName="draft-conatiner">
-          <Typography variant="h4">Places to Visit</Typography>
-          <PlaceForm submitPlace={submitPlace} />
+          <div className="draft-title-container">
+            <Typography variant="h4">Places to Visit</Typography>
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={<AddIcon />}
+              onClick={() => setToggleForm(true)}
+            >
+              Add Place
+            </Button>
+          </div>
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
         </Container>
       </div>
+      <Popup
+        title="Add Place"
+        openPopup={toggleForm}
+        setOpenPopup={setToggleForm}
+        children={
+          <PlaceForm submitPlace={submitPlace} setOpenPopup={setToggleForm} />
+        }
+      />
     </>
   );
 };
