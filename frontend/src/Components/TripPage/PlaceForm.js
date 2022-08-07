@@ -30,14 +30,16 @@ const PlaceForm = ({ submitPlace, setOpenPopup }) => {
 
   const submitPlaceData = (event) => {
     event.preventDefault();
-    let formattedDate = format(formFields.date, 'MM-dd-yyyy');
-    let formattedTime = format(formFields.time, 'HH:mm');
-
     const requestBody = {
       ...formFields,
-      date: formattedDate,
-      time: formattedTime,
     };
+
+    if (formFields.date !== null) {
+      requestBody.date = format(formFields.date, 'MM-dd-yyyy');
+    }
+    if (formFields.time !== null) {
+      requestBody.time = format(formFields.time, 'HH:mm');
+    }
     submitPlace(requestBody);
     setFormFields(defaultState);
     setOpenPopup(false);

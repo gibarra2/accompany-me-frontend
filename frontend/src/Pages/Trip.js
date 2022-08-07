@@ -43,7 +43,6 @@ const Trip = () => {
     axios
       .post(`${url}/trips/${tripID}/places/`, placeInfo)
       .then((response) => {
-        console.log(response);
         setTripDetails(response.data);
         setScheduledPlaces(
           response.data.places.filter((place) => {
