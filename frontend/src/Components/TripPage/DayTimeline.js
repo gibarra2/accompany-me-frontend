@@ -19,7 +19,13 @@ const DayTimeline = ({ places }) => {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <PlaceCard name={place.name} />
+            <PlaceCard
+              key={place.id}
+              id={place.id}
+              name={place.name}
+              address={place.address}
+              note={place.note}
+            />
           </TimelineContent>
         </TimelineItem>
       );

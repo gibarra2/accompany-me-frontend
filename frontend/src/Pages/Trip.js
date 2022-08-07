@@ -70,11 +70,7 @@ const Trip = () => {
       <div className="trip-page-container">
         <Container className="itinerary-container">
           <Typography variant="h4">Itinerary</Typography>
-          <Itinerary
-            startDate={tripDetails['start_date']}
-            endDate={tripDetails['end_date']}
-            places={scheduledPlaces}
-          />
+          <Itinerary places={scheduledPlaces} />
         </Container>
         <Container clasName="draft-conatiner">
           <div className="draft-title-container">

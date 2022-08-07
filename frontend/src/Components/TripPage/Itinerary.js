@@ -2,7 +2,7 @@ import React from 'react';
 import DayTimeline from './DayTimeline';
 import Typography from '@mui/material/Typography';
 
-const Itinerary = ({ startDate, endDate, places }) => {
+const Itinerary = ({ places }) => {
   if ((places === undefined) | (places === [])) {
     return <></>;
   }
