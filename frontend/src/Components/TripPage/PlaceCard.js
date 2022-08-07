@@ -52,8 +52,12 @@ const PlaceCard = ({ id, name, address, note }) => {
         <CardContent>
           <Typography variant="subtitle2">Address</Typography>
           <Typography paragraph>{address}</Typography>
-          <Typography variant="subtitle2">Note</Typography>
-          <Typography paragraph>{note}</Typography>
+          {note && (
+            <>
+              <Typography variant="subtitle2">Note</Typography>
+              <Typography paragraph>{note}</Typography>{' '}
+            </>
+          )}
         </CardContent>
       </Collapse>
     </Card>
