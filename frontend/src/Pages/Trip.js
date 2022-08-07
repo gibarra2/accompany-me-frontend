@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Itinerary from '../Components/TripPage/Itinerary';
 import PlaceForm from '../Components/TripPage/PlaceForm';
+import DraftList from '../Components/TripPage/DraftList';
 import Popup from '../Components/Popup';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -72,7 +73,7 @@ const Trip = () => {
           <Typography variant="h4">Itinerary</Typography>
           <Itinerary places={scheduledPlaces} />
         </Container>
-        <Container clasName="draft-conatiner">
+        <Container className="draft-conatiner">
           <div className="draft-title-container">
             <Typography variant="h4">Places to Visit</Typography>
             <Button
@@ -84,6 +85,7 @@ const Trip = () => {
               Add Place
             </Button>
           </div>
+          <DraftList places={unscheduledPlaces} />
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
