@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Itinerary from '../Components/Trip Page Components/Itinerary';
-import PlaceForm from '../Components/Trip Page Components/PlaceForm';
+import Itinerary from '../Components/TripPage/Itinerary';
+import PlaceForm from '../Components/TripPage/PlaceForm';
 import Popup from '../Components/Popup';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';

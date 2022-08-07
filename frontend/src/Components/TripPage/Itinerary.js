@@ -7,12 +7,12 @@ const Itinerary = ({ startDate, endDate, places }) => {
     return <></>;
   }
 
-  // Make a list of dates? For each date in the list make a timeline w/ the corresponding places
+  // Make an array of unique dates from the places array
   const uniqueDates = [...new Set(places.map((place) => place.date))];
-  console.log(uniqueDates);
 
   const timelines = [];
 
+  // Go through each date in array, create a subarrays of places for that date, which gets passed to DayTimeline
   for (let date of uniqueDates) {
     let placesForDate = places.filter((place) => {
       return place.date === date;
