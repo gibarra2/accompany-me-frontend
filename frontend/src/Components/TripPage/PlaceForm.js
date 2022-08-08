@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -13,7 +13,13 @@ import {
 } from '@mui/x-date-pickers';
 import format from 'date-fns/format';
 
-const PlaceForm = ({ submitPlace, setOpenPopup }) => {
+const PlaceForm = ({
+  createPlace,
+  editPlace,
+  setOpenPopup,
+  placeToEdit,
+  setPlaceToEdit,
+}) => {
   const defaultState = {
     name: '',
     address: '',
@@ -40,10 +46,23 @@ const PlaceForm = ({ submitPlace, setOpenPopup }) => {
     if (formFields.time !== null) {
       requestBody.time = format(formFields.time, 'HH:mm');
     }
-    submitPlace(requestBody);
+
+    if (!formFields.id) {
+      createPlace(requestBody);
+    } else {
+      delete requestBody.id;
+      editPlace(placeToEdit.id, requestBody);
+    }
     setFormFields(defaultState);
     setOpenPopup(false);
+    setPlaceToEdit(null);
   };
+
+  useEffect(() => {
+    if (placeToEdit !== null) {
+      setFormFields({ ...placeToEdit });
+    }
+  }, [placeToEdit]);
 
   return (
     <>

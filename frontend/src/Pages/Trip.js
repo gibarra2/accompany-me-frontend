@@ -18,6 +18,7 @@ const Trip = () => {
   const [scheduledPlaces, setScheduledPlaces] = useState([]);
   const [unscheduledPlaces, setUnscheduledPlaces] = useState([]);
   const [toggleForm, setToggleForm] = useState(false);
+  const [placeToEdit, setPlaceToEdit] = useState(null);
 
   // Need state for place to be edited
   // Add onClick function to open record in popup
@@ -43,7 +44,7 @@ const Trip = () => {
       });
   };
 
-  const submitPlace = (placeInfo) => {
+  const createPlace = (placeInfo) => {
     axios
       .post(`${url}/trips/${tripID}/places/`, placeInfo)
       .then((response) => {
@@ -64,6 +65,16 @@ const Trip = () => {
       });
   };
 
+  const editPlace = (placeID, placeInfo) => {
+    axios
+      .patch(`${url}/places/${placeID}/`, placeInfo)
+      .then((response) => {
+        console.log(response);
+        getTripDetails(tripID);
+      })
+      .catch((error) => console.log(error.response));
+  };
+
   const deletePlace = (placeID) => {
     axios
       .delete(`${url}/places/${placeID}/`)
@@ -79,6 +90,11 @@ const Trip = () => {
 
   useEffect(() => getTripDetails(tripID), []);
 
+  const openPlaceInPopup = (place) => {
+    setPlaceToEdit(place);
+    setToggleForm(true);
+  };
+
   return (
     <>
       <Typography variant="h3" mt={3} mb={3} className="title">
@@ -87,7 +103,11 @@ const Trip = () => {
       <div className="trip-page-container">
         <Container className="itinerary-container">
           <Typography variant="h4">Itinerary</Typography>
-          <Itinerary places={scheduledPlaces} deletePlace={deletePlace} />
+          <Itinerary
+            places={scheduledPlaces}
+            deletePlace={deletePlace}
+            setOpenPopup={setToggleForm}
+          />
         </Container>
         <Container className="draft-conatiner">
           <div className="draft-title-container">
@@ -101,7 +121,11 @@ const Trip = () => {
               Add Place
             </Button>
           </div>
-          <DraftList places={unscheduledPlaces} deletePlace={deletePlace} />
+          <DraftList
+            places={unscheduledPlaces}
+            deletePlace={deletePlace}
+            setOpenPopup={openPlaceInPopup}
+          />
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
@@ -112,7 +136,13 @@ const Trip = () => {
         openPopup={toggleForm}
         setOpenPopup={setToggleForm}
         children={
-          <PlaceForm submitPlace={submitPlace} setOpenPopup={setToggleForm} />
+          <PlaceForm
+            createPlace={createPlace}
+            editPlace={editPlace}
+            setOpenPopup={setToggleForm}
+            placeToEdit={placeToEdit}
+            setPlaceToEdit={setPlaceToEdit}
+          />
         }
       />
     </>

@@ -21,8 +21,18 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const PlaceCard = ({ id, name, address, note, deletePlace }) => {
+const PlaceCard = ({
+  id,
+  name,
+  address,
+  note,
+  deletePlace,
+  setOpenPopup,
+  place,
+}) => {
   const [expanded, setExpanded] = useState(false);
+
+  // console.log(place);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -33,7 +43,11 @@ const PlaceCard = ({ id, name, address, note, deletePlace }) => {
         <Typography variant="h6">{name}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            setOpenPopup(place);
+          }}
+        >
           <EditIcon />
         </IconButton>
         <IconButton onClick={() => deletePlace(id)}>
