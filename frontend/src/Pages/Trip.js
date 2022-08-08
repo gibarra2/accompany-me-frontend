@@ -19,6 +19,9 @@ const Trip = () => {
   const [unscheduledPlaces, setUnscheduledPlaces] = useState([]);
   const [toggleForm, setToggleForm] = useState(false);
 
+  // Need state for place to be edited
+  // Add onClick function to open record in popup
+
   const getTripDetails = (ID) => {
     axios
       .get(`${url}/trips/${ID}/`)
@@ -61,6 +64,19 @@ const Trip = () => {
       });
   };
 
+  const deletePlace = (placeID) => {
+    axios
+      .delete(`${url}/places/${placeID}/`)
+      .then((response) => {
+        console.log(response);
+        // If successfully deleted, need to update either scheduled places or unscheduled places
+        // How do you know which one?
+        // Could we just call getTrip Details again?
+        getTripDetails(tripID);
+      })
+      .catch((error) => console.log(error.response));
+  };
+
   useEffect(() => getTripDetails(tripID), []);
 
   return (
@@ -71,7 +87,7 @@ const Trip = () => {
       <div className="trip-page-container">
         <Container className="itinerary-container">
           <Typography variant="h4">Itinerary</Typography>
-          <Itinerary places={scheduledPlaces} />
+          <Itinerary places={scheduledPlaces} deletePlace={deletePlace} />
         </Container>
         <Container className="draft-conatiner">
           <div className="draft-title-container">
@@ -85,7 +101,7 @@ const Trip = () => {
               Add Place
             </Button>
           </div>
-          <DraftList places={unscheduledPlaces} />
+          <DraftList places={unscheduledPlaces} deletePlace={deletePlace} />
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>

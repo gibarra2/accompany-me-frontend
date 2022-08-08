@@ -2,7 +2,7 @@ import React from 'react';
 import DayTimeline from './DayTimeline';
 import Typography from '@mui/material/Typography';
 
-const Itinerary = ({ places }) => {
+const Itinerary = ({ places, deletePlace }) => {
   if ((places === undefined) | (places === [])) {
     return <></>;
   }
@@ -20,7 +20,7 @@ const Itinerary = ({ places }) => {
     timelines.push(
       <>
         <Typography variant="h6">{date}</Typography>
-        <DayTimeline places={placesForDate} />
+        <DayTimeline places={placesForDate} deletePlace={deletePlace} />
       </>
     );
   }

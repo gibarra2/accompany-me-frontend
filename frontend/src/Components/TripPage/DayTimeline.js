@@ -8,7 +8,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import PlaceCard from './PlaceCard';
 
-const DayTimeline = ({ places }) => {
+const DayTimeline = ({ places, deletePlace }) => {
   const TimelineItems = (places) => {
     return places.map((place) => {
       return (
@@ -25,6 +25,7 @@ const DayTimeline = ({ places }) => {
               name={place.name}
               address={place.address}
               note={place.note}
+              deletePlace={deletePlace}
             />
           </TimelineContent>
         </TimelineItem>

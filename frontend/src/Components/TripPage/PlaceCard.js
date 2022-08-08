@@ -21,7 +21,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const PlaceCard = ({ id, name, address, note }) => {
+const PlaceCard = ({ id, name, address, note, deletePlace }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -33,10 +33,10 @@ const PlaceCard = ({ id, name, address, note }) => {
         <Typography variant="h6">{name}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton>
           <EditIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton onClick={() => deletePlace(id)}>
           <DeleteIcon />
         </IconButton>
         <ExpandMore

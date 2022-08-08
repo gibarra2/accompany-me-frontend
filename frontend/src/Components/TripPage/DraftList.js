@@ -2,7 +2,7 @@ import React from 'react';
 import PlaceCard from './PlaceCard';
 import Grid from '@mui/material/Grid';
 
-const DraftList = ({ places }) => {
+const DraftList = ({ places, deletePlace }) => {
   const placeList = places.map((place) => {
     return (
       <Grid item xs={6}>
@@ -11,6 +11,7 @@ const DraftList = ({ places }) => {
           name={place.name}
           address={place.address}
           note={place.note}
+          deletePlace={deletePlace}
         />
       </Grid>
     );
