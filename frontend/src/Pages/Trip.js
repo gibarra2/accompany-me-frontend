@@ -106,7 +106,7 @@ const Trip = () => {
           <Itinerary
             places={scheduledPlaces}
             deletePlace={deletePlace}
-            setOpenPopup={setToggleForm}
+            setOpenPopup={openPlaceInPopup}
           />
         </Container>
         <Container className="draft-conatiner">
@@ -135,6 +135,7 @@ const Trip = () => {
         title="Add Place"
         openPopup={toggleForm}
         setOpenPopup={setToggleForm}
+        setPlaceToEdit={setPlaceToEdit}
         children={
           <PlaceForm
             createPlace={createPlace}

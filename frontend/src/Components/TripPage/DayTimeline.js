@@ -27,6 +27,7 @@ const DayTimeline = ({ places, deletePlace, setOpenPopup }) => {
               note={place.note}
               deletePlace={deletePlace}
               setOpenPopup={setOpenPopup}
+              place={place}
             />
           </TimelineContent>
         </TimelineItem>

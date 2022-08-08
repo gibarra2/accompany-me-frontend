@@ -7,13 +7,24 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import '../styles/Popup.css';
 
-const Popup = ({ title, children, openPopup, setOpenPopup }) => {
+const Popup = ({
+  title,
+  children,
+  openPopup,
+  setOpenPopup,
+  setPlaceToEdit,
+}) => {
   return (
     <Dialog open={openPopup} maxWidth="md">
       <DialogTitle>
         <div className="popup-container">
           <Typography variant="h6">{title}</Typography>
-          <IconButton onClick={() => setOpenPopup(false)}>
+          <IconButton
+            onClick={() => {
+              setOpenPopup(false);
+              setPlaceToEdit(null);
+            }}
+          >
             <CloseIcon />
           </IconButton>
         </div>
