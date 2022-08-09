@@ -58,9 +58,26 @@ const PlaceForm = ({
     setPlaceToEdit(null);
   };
 
+  const getDateTimeObject = (dateString, timeString) => {
+    let dateObj;
+    if (dateString && timeString) {
+      dateObj = new Date(`${dateString} ${timeString}`);
+    } else if (!timeString) {
+      dateObj = new Date(`${dateString}`);
+    } else if (!dateString) {
+      dateObj = new Date(`1970-01-1 ${timeString}`);
+    }
+    return dateObj;
+  };
+
   useEffect(() => {
     if (placeToEdit !== null) {
-      setFormFields({ ...placeToEdit });
+      if (placeToEdit.date || placeToEdit.time) {
+        let newDateTime = getDateTimeObject(placeToEdit.date, placeToEdit.time);
+        setFormFields({ ...placeToEdit, date: newDateTime, time: newDateTime });
+      } else {
+        setFormFields({ ...placeToEdit });
+      }
     }
   }, [placeToEdit]);
 
