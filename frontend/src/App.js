@@ -6,6 +6,7 @@ import TripProposal from './Pages/TripProposal';
 import Header from './Components/Header';
 import { useState } from 'react';
 import axios from 'axios';
+import Map from './Components/TripPage/Map';
 
 export const url = process.env.REACT_APP_DEV_SERVER_URL;
 

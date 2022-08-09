@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Itinerary from '../Components/TripPage/Itinerary';
 import PlaceForm from '../Components/TripPage/PlaceForm';
 import DraftList from '../Components/TripPage/DraftList';
+import Map from '../Components/TripPage/Map';
 import Popup from '../Components/Popup';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -129,6 +130,7 @@ const Trip = () => {
         </Container>
         <Container className="map-container">
           <Typography variant="h4">Map</Typography>
+          <Map />
         </Container>
       </div>
       <Popup
