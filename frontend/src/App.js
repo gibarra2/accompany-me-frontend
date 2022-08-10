@@ -6,7 +6,7 @@ import TripProposal from './Pages/TripProposal';
 import Header from './Components/Header';
 import { useState } from 'react';
 import axios from 'axios';
-import Map from './Components/TripPage/Map';
+import SignInSide from './Pages/SignInSide';
 
 export const url = process.env.REACT_APP_DEV_SERVER_URL;
 
@@ -42,6 +42,7 @@ function App() {
         <div className="main-container">
           <Header />
           <Routes>
+            <Route path="/" element={<SignInSide />} />
             <Route
               path="/user/:userID"
               element={
