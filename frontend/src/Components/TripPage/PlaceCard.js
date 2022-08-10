@@ -32,8 +32,6 @@ const PlaceCard = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
-  // console.log(place);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

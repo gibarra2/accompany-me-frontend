@@ -132,7 +132,11 @@ const Trip = () => {
           <Typography variant="h4" mt={2} mb={2}>
             Map
           </Typography>
-          <Map lat={tripDetails.latitude} lng={tripDetails.longitude} />
+          <Map
+            cityLat={tripDetails.latitude}
+            cityLng={tripDetails.longitude}
+            places={tripDetails.places}
+          />
         </Container>
       </div>
       <Popup
