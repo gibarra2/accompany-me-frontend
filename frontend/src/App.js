@@ -1,9 +1,13 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import Home from './Pages/Home';
 import Trip from './Pages/Trip';
 import TripProposal from './Pages/TripProposal';
-import Header from './Components/Header';
 import { useState } from 'react';
 import axios from 'axios';
 import SignInSide from './Pages/SignInSide';
@@ -40,7 +44,7 @@ function App() {
       {/* Components added within Router component will be displayed on every page */}
       <div className="main-page">
         <div className="main-container">
-          <Header />
+          {/* <Header /> */}
           <Routes>
             <Route path="/" element={<SignInSide />} />
             <Route

@@ -7,6 +7,7 @@ import TripForm from '../Components/TripForm';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import Header from '../Components/Header';
 
 const Home = ({ getTrips, tripList, submitTrip }) => {
   let { userID } = useParams();
@@ -18,6 +19,7 @@ const Home = ({ getTrips, tripList, submitTrip }) => {
 
   return (
     <>
+      <Header />
       <Stack
         direction="row"
         justifyContent="space-between"

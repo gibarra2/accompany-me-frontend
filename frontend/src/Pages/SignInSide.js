@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -33,7 +34,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+const SignInSide = () => {
+  const [formFields, setFormFields] = useState({ email: '', password: '' });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,6 +44,7 @@ export default function SignInSide() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    setFormFields({ email: '', password: '' });
   };
 
   return (
@@ -53,7 +57,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random/?travel',
+            backgroundImage: 'url(https://source.unsplash.com/random/?travel)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light'
@@ -94,6 +98,10 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={formFields.email}
+                onChange={(e) =>
+                  setFormFields({ ...formFields, email: e.target.value })
+                }
               />
               <TextField
                 margin="normal"
@@ -104,6 +112,10 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={formFields.password}
+                onChange={(e) =>
+                  setFormFields({ ...formFields, password: e.target.value })
+                }
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -136,4 +148,6 @@ export default function SignInSide() {
       </Grid>
     </ThemeProvider>
   );
-}
+};
+
+export default SignInSide;

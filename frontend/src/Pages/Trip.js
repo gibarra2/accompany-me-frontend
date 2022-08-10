@@ -12,6 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import { url } from '../App';
 import '../styles/TripPage.css';
+import Header from '../Components/Header';
 
 const Trip = () => {
   let { tripID } = useParams();
@@ -98,6 +99,7 @@ const Trip = () => {
 
   return (
     <>
+      <Header />
       <Typography variant="h3" mt={3} mb={3} className="title">
         Trip to {tripDetails.city}, {tripDetails.country}
       </Typography>
