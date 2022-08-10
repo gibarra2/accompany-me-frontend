@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { submitTrip } from '../api/HomeAPI';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -9,7 +10,7 @@ import format from 'date-fns/format';
 import Chip from '@mui/material/Chip';
 import '../styles/TripForm.css';
 
-const TripForm = ({ userID, submitTrip, setOpenPopup }) => {
+const TripForm = ({ userID, setTripList, setOpenPopup }) => {
   let today = new Date();
   let tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -51,7 +52,9 @@ const TripForm = ({ userID, submitTrip, setOpenPopup }) => {
       users: userIDArray,
     };
 
-    submitTrip(userID, requestBody);
+    submitTrip(userID, requestBody)
+      .then((data) => setTripList(data.trips))
+      .catch((error) => console.log(error));
     setFormFields(defaultState);
     setOpenPopup(false);
   };

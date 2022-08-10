@@ -9,7 +9,7 @@ const TripList = ({ tripList }) => {
       let location = `${trip.city}, ${trip.country}`;
       let dates = `${trip.start_date} - ${trip.end_date}`;
       return (
-        <Grid item xs={3}>
+        <Grid item xs={3} key={trip.id}>
           <TripCard
             location={location}
             dates={dates}

@@ -8,13 +8,17 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import Header from '../Components/Header';
+import { getTrips } from '../api/HomeAPI';
 
-const Home = ({ getTrips, tripList, submitTrip }) => {
+const Home = ({ submitTrip }) => {
   let { userID } = useParams();
   const [toggleForm, setToggleForm] = useState(false);
+  const [tripList, setTripList] = useState([]);
 
   useEffect(() => {
-    getTrips(userID);
+    getTrips(userID)
+      .then((data) => setTripList(data.trips))
+      .catch((error) => console.log(error.message));
   }, []);
 
   return (
@@ -45,7 +49,7 @@ const Home = ({ getTrips, tripList, submitTrip }) => {
         children={
           <TripForm
             userID={userID}
-            submitTrip={submitTrip}
+            setTripList={setTripList}
             setOpenPopup={setToggleForm}
           />
         }
