@@ -12,7 +12,6 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import { url } from '../App';
 import '../styles/TripPage.css';
-import Header from '../Components/Header';
 
 const Trip = () => {
   let { tripID } = useParams();
@@ -21,9 +20,6 @@ const Trip = () => {
   const [unscheduledPlaces, setUnscheduledPlaces] = useState([]);
   const [toggleForm, setToggleForm] = useState(false);
   const [placeToEdit, setPlaceToEdit] = useState(null);
-
-  // Need state for place to be edited
-  // Add onClick function to open record in popup
 
   const getTripDetails = (ID) => {
     axios
@@ -99,7 +95,6 @@ const Trip = () => {
 
   return (
     <>
-      <Header />
       <Typography variant="h3" mt={3} mb={3} className="title">
         Trip to {tripDetails.city}, {tripDetails.country}
       </Typography>

@@ -7,7 +7,6 @@ import TripForm from '../Components/TripForm';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import Header from '../Components/Header';
 import { getTrips } from '../api/HomeAPI';
 
 const Home = ({ submitTrip }) => {
@@ -23,7 +22,6 @@ const Home = ({ submitTrip }) => {
 
   return (
     <>
-      <Header />
       <Stack
         direction="row"
         justifyContent="space-between"
