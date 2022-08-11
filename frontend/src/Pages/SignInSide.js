@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import {
   Avatar,
-  Button,
   CssBaseline,
-  TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Paper,
   Box,
@@ -39,6 +35,7 @@ const theme = createTheme();
 const SignInSide = ({ setUserData }) => {
   const location = useLocation();
   const [loginError, setLoginError] = useState(false);
+  const [signUpError, setSignUpError] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -93,63 +90,32 @@ const SignInSide = ({ setUserData }) => {
                 <Typography component="h2" variant="h5">
                   Sign Up
                 </Typography>
-                <SignUpForm />{' '}
+                <SignUpForm
+                  setUserData={setUserData}
+                  setSignUpError={setSignUpError}
+                />{' '}
               </>
             )}
-            {/* <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
-              <TextField
-                margin="normal"
-                required={true}
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                value={formFields.email}
-                onChange={(e) =>
-                  setFormFields({ ...formFields, email: e.target.value })
-                }
-              />
-              <TextField
-                margin="normal"
-                required={true}
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={formFields.password}
-                onChange={(e) =>
-                  setFormFields({ ...formFields, password: e.target.value })
-                }
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button> */}
-            {loginError && (
+            {loginError && location.pathname === '/' && (
               <Typography
                 variant="body1"
                 display="block"
                 gutterBottom
                 sx={{ textAlign: 'center' }}
               >
-                User not found. Please sign up.
+                User not found. Verify you are using the correct email or sign
+                up.
+              </Typography>
+            )}
+            {signUpError && location.pathname === '/signup' && (
+              <Typography
+                variant="body1"
+                display="block"
+                gutterBottom
+                sx={{ textAlign: 'center' }}
+              >
+                Error signing up. Please provide an email in the appropriate
+                format: 'email@domain.com'
               </Typography>
             )}
             <Grid container>

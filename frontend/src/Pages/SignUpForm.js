@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button,
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Box,
-} from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
+import { makeNewUser } from '../api/SignInAPI';
 
-const SignUpForm = () => {
-  const [formFields, setFormFields] = useState({ email: '', password: '' });
-  const [loginError, setLoginError] = useState(false);
+const SignUpForm = ({ setUserData, setSignUpError }) => {
+  const defaultFormFields = { first_name: '', last_name: '', email: '' };
+  const [formFields, setFormFields] = useState(defaultFormFields);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    makeNewUser(formFields)
+      .then((userData) => {
+        setUserData(userData);
+        navigate(`../user/${userData.id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUpError(true);
+      });
 
-    setFormFields({ email: '', password: '' });
+    setFormFields(defaultFormFields);
   };
+
+  const handleChange = (e) => {
+    setFormFields({ ...formFields, [e.target.id]: e.target.value });
+  };
+
   return (
     <>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -25,27 +34,23 @@ const SignUpForm = () => {
           margin="normal"
           required
           fullWidth
-          id="firstName"
+          id="first_name"
           label="First Name"
           name="firstName"
           autoFocus
-          value={formFields.email}
-          onChange={(e) =>
-            setFormFields({ ...formFields, email: e.target.value })
-          }
+          value={formFields['first_name']}
+          onChange={(event) => handleChange(event)}
         />
         <TextField
           margin="normal"
           required
           fullWidth
-          id="lastName"
+          id="last_name"
           label="Last Name"
           name="lastName"
           autoFocus
-          value={formFields.email}
-          onChange={(e) =>
-            setFormFields({ ...formFields, email: e.target.value })
-          }
+          value={formFields['last_name']}
+          onChange={(event) => handleChange(event)}
         />
         <TextField
           margin="normal"
@@ -56,9 +61,7 @@ const SignUpForm = () => {
           name="email"
           autoFocus
           value={formFields.email}
-          onChange={(e) =>
-            setFormFields({ ...formFields, email: e.target.value })
-          }
+          onChange={(event) => handleChange(event)}
         />
         <TextField
           margin="normal"
@@ -68,10 +71,6 @@ const SignUpForm = () => {
           label="Password"
           type="password"
           id="password"
-          value={formFields.password}
-          onChange={(e) =>
-            setFormFields({ ...formFields, password: e.target.value })
-          }
         />
         <Button
           type="submit"

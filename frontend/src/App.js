@@ -20,11 +20,6 @@ function App() {
           <Header />
         )}
         <Routes>
-          {/* <Route path="/" element={<SignInSide setUserData={setUserData} />} />
-          <Route
-            path="/signup"
-            element={<SignInSide setUserData={setUserData} />}
-          /> */}
           {['/', '/signup'].map((path, index) => {
             return (
               <Route
