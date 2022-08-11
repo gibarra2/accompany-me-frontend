@@ -4,16 +4,19 @@ import { useParams } from 'react-router-dom';
 import '../styles/NavBar.css';
 import Avatar from '@mui/material/Avatar';
 
-const NavBar = () => {
-  let { id } = useParams();
+const NavBar = ({ userData }) => {
+  let userInitials = userData.id
+    ? `${userData['first_name'][0]}${userData['last_name'][0]}`
+    : 'US';
+
   return (
     <>
       <nav>
         <li>
-          <Link to="/user/:id">Home</Link>
+          <Link to={`/user/${userData.id}`}>Home</Link>
         </li>
         <li>
-          <Avatar className="user-avatar">US</Avatar>
+          <Avatar className="user-avatar">{userInitials}</Avatar>
         </li>
       </nav>
     </>

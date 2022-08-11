@@ -78,9 +78,6 @@ const Trip = () => {
       .delete(`${url}/places/${placeID}/`)
       .then((response) => {
         console.log(response);
-        // If successfully deleted, need to update either scheduled places or unscheduled places
-        // How do you know which one?
-        // Could we just call getTrip Details again?
         getTripDetails(tripID);
       })
       .catch((error) => console.log(error.response));
@@ -95,8 +92,11 @@ const Trip = () => {
 
   return (
     <>
-      <Typography variant="h3" mt={3} mb={3} className="title">
+      <Typography variant="h3" mt={3} gutterBottom className="title">
         Trip to {tripDetails.city}, {tripDetails.country}
+      </Typography>
+      <Typography variant="h4" gutterBottom className="title">
+        {tripDetails['start_date']} - {tripDetails['end_date']}
       </Typography>
       <div className="trip-page-container">
         <Container className="itinerary-container">

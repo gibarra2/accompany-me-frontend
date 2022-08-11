@@ -17,7 +17,7 @@ function App() {
     <div className="main-page">
       <div className="main-container">
         {location.pathname !== '/' && location.pathname !== '/signup' && (
-          <Header />
+          <Header userData={userData} />
         )}
         <Routes>
           {['/', '/signup'].map((path, index) => {
