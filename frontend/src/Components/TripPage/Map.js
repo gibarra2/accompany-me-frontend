@@ -1,7 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PlaceMarker from './PlaceMarker';
-import PlaceTwoToneIcon from '@mui/icons-material/PlaceTwoTone';
 
 const Map = ({ cityLat, cityLng, places }) => {
   if (!places || !cityLat) {
@@ -17,14 +16,14 @@ const Map = ({ cityLat, cityLng, places }) => {
   };
 
   const allPlaceMarkers = (placesArr) => {
-    return placesArr.map((place) => {
+    return placesArr?.map((place) => {
       return (
-        <PlaceTwoToneIcon
+        <PlaceMarker
           key={place.id}
           lat={place.latitude}
           lng={place.longitude}
-          fontSize={'large'}
-          onClick={() => console.log('I clicked this icon')}
+          name={place.name}
+          address={place.address}
         />
       );
     });
