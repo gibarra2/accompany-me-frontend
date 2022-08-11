@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Button,
@@ -12,11 +12,12 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getUserInfo } from '../api/SignInAPI';
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
+import { useLocation } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -27,10 +28,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
+      Acompáñame {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -39,18 +37,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 const SignInSide = ({ setUserData }) => {
-  const [formFields, setFormFields] = useState({ email: '', password: '' });
-  const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    getUserInfo(formFields.email).then((userData) => {
-      setUserData(userData);
-      navigate(`user/${userData.id}`);
-    });
-
-    setFormFields({ email: '', password: '' });
-  };
+  const location = useLocation();
+  const [loginError, setLoginError] = useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,13 +70,33 @@ const SignInSide = ({ setUserData }) => {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
+            <Typography component="h1" variant="h4" gutterBottom>
+              Acompáñame
             </Typography>
-            <Box
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <FlightTakeoffOutlinedIcon />
+            </Avatar>
+            {location.pathname !== '/signup' && (
+              <>
+                <Typography component="h2" variant="h5">
+                  Sign in
+                </Typography>
+                <SignInForm
+                  setUserData={setUserData}
+                  setLoginError={setLoginError}
+                />
+              </>
+            )}
+            {location.pathname !== '/' && (
+              <>
+                {' '}
+                <Typography component="h2" variant="h5">
+                  Sign Up
+                </Typography>
+                <SignUpForm />{' '}
+              </>
+            )}
+            {/* <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
@@ -96,7 +104,7 @@ const SignInSide = ({ setUserData }) => {
             >
               <TextField
                 margin="normal"
-                required
+                required={true}
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -110,7 +118,7 @@ const SignInSide = ({ setUserData }) => {
               />
               <TextField
                 margin="normal"
-                required
+                required={true}
                 fullWidth
                 name="password"
                 label="Password"
@@ -133,21 +141,37 @@ const SignInSide = ({ setUserData }) => {
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
+              </Button> */}
+            {loginError && (
+              <Typography
+                variant="body1"
+                display="block"
+                gutterBottom
+                sx={{ textAlign: 'center' }}
+              >
+                User not found. Please sign up.
+              </Typography>
+            )}
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                {location.pathname !== '/signup' && (
+                  <Link variant="body2" component={RouterLink} to="/signup">
                     {"Don't have an account? Sign Up"}
                   </Link>
-                </Grid>
+                )}
+                {location.pathname !== '/' && (
+                  <Link variant="body2" component={RouterLink} to="/">
+                    {'Sign In'}
+                  </Link>
+                )}
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Grid>
       </Grid>

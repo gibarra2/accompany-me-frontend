@@ -16,9 +16,24 @@ function App() {
   return (
     <div className="main-page">
       <div className="main-container">
-        {location.pathname !== '/' && <Header />}
+        {location.pathname !== '/' && location.pathname !== '/signup' && (
+          <Header />
+        )}
         <Routes>
-          <Route path="/" element={<SignInSide setUserData={setUserData} />} />
+          {/* <Route path="/" element={<SignInSide setUserData={setUserData} />} />
+          <Route
+            path="/signup"
+            element={<SignInSide setUserData={setUserData} />}
+          /> */}
+          {['/', '/signup'].map((path, index) => {
+            return (
+              <Route
+                path={path}
+                element={<SignInSide setUserData={setUserData} />}
+                key={index}
+              />
+            );
+          })}
           <Route path="/user/:userID" element={<Home />} />
           <Route path="/user/:userID/trip/:tripID" element={<Trip />} />
           <Route path="/proposal/:id" element={<TripProposal />} />

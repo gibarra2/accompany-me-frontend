@@ -11,5 +11,10 @@ export const getUserInfo = (email) => {
     .then((response) => {
       return response.data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      if (error.response.status === 404) {
+        throw new Error('User does not exist');
+      }
+      console.log(error.response);
+    });
 };
