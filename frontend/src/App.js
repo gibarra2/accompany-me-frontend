@@ -8,7 +8,7 @@ import SignInSide from './Pages/SignInSide';
 import { useState } from 'react';
 import Header from './Components/Header';
 
-export const url = process.env.REACT_APP_DEV_SERVER_URL;
+export const url = process.env.REACT_APP_URL;
 
 function App() {
   const [userData, setUserData] = useState({});

@@ -8,6 +8,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import format from 'date-fns/format';
 import Chip from '@mui/material/Chip';
+import { url } from '../App';
 import '../styles/TripForm.css';
 
 const TripForm = ({ userID, setTripList, setOpenPopup }) => {
@@ -59,7 +60,7 @@ const TripForm = ({ userID, setTripList, setOpenPopup }) => {
     setOpenPopup(false);
   };
 
-  const url = process.env.REACT_APP_DEV_SERVER_URL;
+  // const url = process.env.REACT_APP_DEV_SERVER_URL;
 
   const getUsers = () => {
     /*
