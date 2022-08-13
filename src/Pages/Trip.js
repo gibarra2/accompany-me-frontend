@@ -5,6 +5,7 @@ import PlaceForm from '../Components/TripPage/PlaceForm';
 import DraftList from '../Components/TripPage/DraftList';
 import Map from '../Components/TripPage/Map';
 import Popup from '../Components/Popup';
+import UserList from '../Components/TripPage/UserList';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -100,6 +101,8 @@ const Trip = () => {
       </Typography>
       <div className="trip-page-container">
         <Container className="itinerary-container">
+          <Typography variant="h4">Travel Buddies</Typography>
+          <UserList users={tripDetails.users} />
           <Typography variant="h4">Itinerary</Typography>
           <Itinerary
             places={scheduledPlaces}
