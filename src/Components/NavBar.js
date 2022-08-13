@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
 import Avatar from '@mui/material/Avatar';
+import { StyledAvatar } from './TripPage/UserList';
 
 const NavBar = ({ userData }) => {
   let userInitials = userData.id
@@ -15,7 +16,7 @@ const NavBar = ({ userData }) => {
           <Link to={`/user/${userData.id}`}>Home</Link>
         </li>
         <li>
-          <Avatar className="user-avatar">{userInitials}</Avatar>
+          <StyledAvatar className="user-avatar">{userInitials}</StyledAvatar>
         </li>
       </nav>
     </>

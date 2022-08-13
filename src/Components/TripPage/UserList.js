@@ -2,7 +2,14 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { blue } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
+
+export const StyledAvatar = styled((props) => <Avatar {...props} />)`
+  background-color: #58a4b0;
+  height: 50px;
+  width: 50px;
+  font-weight: bold;
+`;
 
 const UserList = ({ users }) => {
   let { userID } = useParams();
@@ -12,10 +19,10 @@ const UserList = ({ users }) => {
       .filter((user) => user.id !== parseInt(userID))
       .map((user) => {
         return (
-          <Avatar
+          <StyledAvatar
+            key={user.id}
             className="user-avatar"
-            sx={{ bgcolor: blue[500], height: 56, width: 56 }}
-          >{`${user['first_name'][0]}${user['last_name'][0]}`}</Avatar>
+          >{`${user['first_name'][0]}${user['last_name'][0]}`}</StyledAvatar>
         );
       });
   };
