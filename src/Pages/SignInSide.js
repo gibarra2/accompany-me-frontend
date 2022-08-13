@@ -9,7 +9,6 @@ import {
   Typography,
 } from '@mui/material';
 import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import { useLocation } from 'react-router';
