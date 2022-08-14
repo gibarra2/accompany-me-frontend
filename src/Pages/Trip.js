@@ -9,7 +9,7 @@ import UserList from '../Components/TripPage/UserList';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import axios from 'axios';
 import { url } from '../App';
 import '../styles/TripPage.css';
@@ -116,7 +116,8 @@ const Trip = () => {
             <Button
               variant="contained"
               size="large"
-              startIcon={<AddIcon />}
+              color="secondary"
+              startIcon={<AddLocationAltIcon />}
               onClick={() => setToggleForm(true)}
             >
               Add Place

@@ -5,4 +5,6 @@
 
 .main-container {
   grid-column: 2 / span 1;
+  min-height:100vh;
+  background-color: white;
 }

@@ -22,7 +22,7 @@ const TripList = ({ tripList }) => {
   };
 
   return (
-    <Grid container spacing={3} justifyContent="flex-start">
+    <Grid container spacing={3} px={3} py={2} justifyContent="flex-start">
       {cards(tripList)}
     </Grid>
   );

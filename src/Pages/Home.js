@@ -26,14 +26,15 @@ const Home = ({ submitTrip }) => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        mt={2}
-        mb={2}
+        mx={3}
+        my={2}
       >
         <Typography variant="h4">Where I'm Going</Typography>
         <Button
           variant="contained"
           size="large"
           startIcon={<AddIcon />}
+          color="secondary"
           onClick={() => setToggleForm(true)}
         >
           Add Trip
