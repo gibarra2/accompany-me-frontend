@@ -26,6 +26,7 @@ const PlaceCard = ({
   name,
   address,
   note,
+  category,
   deletePlace,
   setOpenPopup,
   place,
@@ -62,6 +63,7 @@ const PlaceCard = ({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
+          <Typography variant="subtitle2">{category}</Typography>
           <Typography variant="subtitle2">Address</Typography>
           <Typography paragraph>{address}</Typography>
           {note && (

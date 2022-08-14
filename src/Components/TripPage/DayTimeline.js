@@ -25,6 +25,7 @@ const DayTimeline = ({ places, deletePlace, setOpenPopup }) => {
               name={place.name}
               address={place.address}
               note={place.note}
+              category={place.category}
               deletePlace={deletePlace}
               setOpenPopup={setOpenPopup}
               place={place}
