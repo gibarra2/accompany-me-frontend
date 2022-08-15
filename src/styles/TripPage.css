@@ -5,8 +5,9 @@
 .trip-page-container {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 35% 65%;
     background-color: white;
+    min-height: 75%;
 }
 
 .itinerary-container {
