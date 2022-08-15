@@ -22,7 +22,7 @@ const Itinerary = ({ places, deletePlace, setOpenPopup }) => {
         <Typography
           variant="h5"
           sx={{
-            backgroundColor: '#58a4b0',
+            backgroundColor: '#487281',
             color: '#fff',
             display: 'inline',
             borderRadius: '15px',
