@@ -1,12 +1,13 @@
-import './App.css';
+import { useState, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router';
 import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import Trip from './Pages/Trip';
-import TripProposal from './Pages/TripProposal';
 import SignInSide from './Pages/SignInSide';
-import { useState } from 'react';
 import Header from './Components/Header';
+import LinearProgress from '@mui/material/LinearProgress';
+import './App.css';
+
+const Home = lazy(() => import('./Pages/Home'));
+const Trip = lazy(() => import('./Pages/Trip'));
 
 export const url = process.env.REACT_APP_URL;
 
@@ -19,20 +20,21 @@ function App() {
         {location.pathname !== '/' && location.pathname !== '/signup' && (
           <Header userData={userData} />
         )}
-        <Routes>
-          {['/', '/signup'].map((path, index) => {
-            return (
-              <Route
-                path={path}
-                element={<SignInSide setUserData={setUserData} />}
-                key={index}
-              />
-            );
-          })}
-          <Route path="/user/:userID" element={<Home />} />
-          <Route path="/user/:userID/trip/:tripID" element={<Trip />} />
-          <Route path="/proposal/:id" element={<TripProposal />} />
-        </Routes>
+        <Suspense fallback={<LinearProgress />}>
+          <Routes>
+            {['/', '/signup'].map((path, index) => {
+              return (
+                <Route
+                  path={path}
+                  element={<SignInSide setUserData={setUserData} />}
+                  key={index}
+                />
+              );
+            })}
+            <Route path="/user/:userID" element={<Home />} />
+            <Route path="/user/:userID/trip/:tripID" element={<Trip />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );
