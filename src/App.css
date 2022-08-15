@@ -1,4 +1,5 @@
 .main-page {
+  background-color: #C0AAA3;
   display: grid;
   grid-template-columns: 1fr  80%  1fr;
 }
