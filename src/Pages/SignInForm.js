@@ -17,7 +17,6 @@ const SignInForm = ({ setUserData, setLoginError }) => {
     event.preventDefault();
     getUserInfo(formFields.email)
       .then((userData) => {
-        console.log(userData);
         setUserData(userData);
         setLoginError(false);
         navigate(`user/${userData.id}`);

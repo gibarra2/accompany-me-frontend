@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import axios from 'axios';
 import { url } from '../App';
+import { getTrip } from '../api/TripAPI';
 import '../styles/TripPage.css';
 
 const Trip = () => {
@@ -22,24 +23,27 @@ const Trip = () => {
   const [toggleForm, setToggleForm] = useState(false);
   const [placeToEdit, setPlaceToEdit] = useState(null);
 
+  const updateTripState = (data) => {
+    setTripDetails(data);
+    setScheduledPlaces(
+      data.places.filter((place) => {
+        return place.date !== null;
+      })
+    );
+    setUnscheduledPlaces(
+      data.places.filter((place) => {
+        return place.date === null;
+      })
+    );
+  };
+
   const getTripDetails = (ID) => {
-    axios
-      .get(`${url}/trips/${ID}/`)
-      .then((response) => {
-        setTripDetails(response.data);
-        setScheduledPlaces(
-          response.data.places.filter((place) => {
-            return place.date !== null;
-          })
-        );
-        setUnscheduledPlaces(
-          response.data.places.filter((place) => {
-            return place.date === null;
-          })
-        );
+    getTrip(ID)
+      .then((tripData) => {
+        updateTripState(tripData);
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
       });
   };
 
@@ -47,17 +51,7 @@ const Trip = () => {
     axios
       .post(`${url}/trips/${tripID}/places/`, placeInfo)
       .then((response) => {
-        setTripDetails(response.data);
-        setScheduledPlaces(
-          response.data.places.filter((place) => {
-            return place.date !== null;
-          })
-        );
-        setUnscheduledPlaces(
-          response.data.places.filter((place) => {
-            return place.date === null;
-          })
-        );
+        updateTripState(response.data);
       })
       .catch((error) => {
         console.log(error);

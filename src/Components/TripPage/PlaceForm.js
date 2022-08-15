@@ -147,8 +147,6 @@ const PlaceForm = ({
           Submit
         </Button>
       </form>
-
-      {/* Category - Dropdown */}
     </>
   );
 };

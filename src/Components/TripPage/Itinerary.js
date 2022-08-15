@@ -12,7 +12,7 @@ const Itinerary = ({ places, deletePlace, setOpenPopup }) => {
 
   const timelines = [];
 
-  // Go through each date in array, create a subarrays of places for that date, which gets passed to DayTimeline
+  // Go through each date in array, create subarrays of places for that date, which gets passed to DayTimeline
   for (let date of uniqueDates) {
     let placesForDate = places.filter((place) => {
       return place.date === date;
