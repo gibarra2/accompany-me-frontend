@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 const TripCard = ({ location, dates, tripID, country }) => {
-  console.log(location);
-  console.log(`https://source.unsplash.com/random/400x300/?${country}`);
   const navigate = useNavigate();
   return (
     <>
