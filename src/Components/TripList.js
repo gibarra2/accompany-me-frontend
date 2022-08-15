@@ -2,7 +2,11 @@ import React from 'react';
 import TripCard from './TripCard';
 import Grid from '@mui/material/Grid';
 
-const TripList = ({ tripList }) => {
+const TripList = ({ tripList, setTripList }) => {
+  if (!tripList) {
+    return <></>;
+  }
+
   // Make TripCards for each of the user's trips
   const cards = (tripList) => {
     return tripList.map((trip) => {
@@ -16,6 +20,7 @@ const TripList = ({ tripList }) => {
             dates={dates}
             tripID={trip.id}
             key={trip.id}
+            setTripList={setTripList}
           />
         </Grid>
       );

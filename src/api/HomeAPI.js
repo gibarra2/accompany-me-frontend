@@ -30,3 +30,16 @@ export const submitTrip = (userID, tripData) => {
       throw new Error('Error submiting new trip');
     });
 };
+
+export const deleteTrip = (tripID) => {
+  return axios
+    .delete(`${url}/trips/${tripID}/`)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response);
+
+      throw new Error('Error deleting trip');
+    });
+};

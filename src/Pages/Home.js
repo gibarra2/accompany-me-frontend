@@ -40,7 +40,7 @@ const Home = ({ submitTrip }) => {
           Add Trip
         </Button>
       </Stack>
-      <TripList tripList={tripList} />
+      <TripList tripList={tripList} setTripList={setTripList} />
       <Popup
         title="Add Trip"
         openPopup={toggleForm}

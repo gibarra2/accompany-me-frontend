@@ -27,7 +27,6 @@ const Itinerary = ({ places, deletePlace, setOpenPopup }) => {
             display: 'inline',
             borderRadius: '15px',
           }}
-          // mx={2}
           px={2}
         >
           {date}

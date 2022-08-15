@@ -4,14 +4,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import { deleteTrip } from '../api/HomeAPI';
 
-const TripCard = ({ location, dates, tripID, country }) => {
+const TripCard = ({ location, dates, tripID, country, setTripList }) => {
   const navigate = useNavigate();
   return (
     <>
-      <Card sx={{ maxWidth: 400 }} onClick={() => navigate(`trip/${tripID}`)}>
-        <CardActionArea>
+      <Card sx={{ maxWidth: 400 }}>
+        <CardActionArea onClick={() => navigate(`trip/${tripID}`)}>
           <CardMedia
             component="img"
             height="160"
@@ -25,6 +26,25 @@ const TripCard = ({ location, dates, tripID, country }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
+        <CardActions>
+          <Button
+            size="small"
+            onClick={(event) => {
+              console.log(typeof tripID);
+              deleteTrip(tripID)
+                .then((response) => {
+                  setTripList((oldTripList) => {
+                    return oldTripList.filter(
+                      (trip) => trip.id !== parseInt(tripID)
+                    );
+                  });
+                })
+                .catch((error) => console.log(error));
+            }}
+          >
+            Delete Trip
+          </Button>
+        </CardActions>
       </Card>
     </>
   );
