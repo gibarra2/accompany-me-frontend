@@ -43,13 +43,14 @@ const PlaceCard = ({
       </CardContent>
       <CardActions disableSpacing>
         <IconButton
+          color="secondary"
           onClick={() => {
             setOpenPopup(place);
           }}
         >
           <EditIcon />
         </IconButton>
-        <IconButton onClick={() => deletePlace(id)}>
+        <IconButton color="secondary" onClick={() => deletePlace(id)}>
           <DeleteIcon />
         </IconButton>
         <ExpandMore
@@ -57,6 +58,7 @@ const PlaceCard = ({
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          color="secondary"
         >
           <ExpandMoreIcon />
         </ExpandMore>

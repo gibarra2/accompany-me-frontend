@@ -19,7 +19,19 @@ const Itinerary = ({ places, deletePlace, setOpenPopup }) => {
     });
     timelines.push(
       <>
-        <Typography variant="h6">{date}</Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            backgroundColor: '#58a4b0',
+            color: '#fff',
+            display: 'inline',
+            borderRadius: '15px',
+          }}
+          // mx={2}
+          px={2}
+        >
+          {date}
+        </Typography>
         <DayTimeline
           places={placesForDate}
           deletePlace={deletePlace}

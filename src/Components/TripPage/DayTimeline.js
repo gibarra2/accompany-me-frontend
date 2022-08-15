@@ -13,9 +13,11 @@ const DayTimeline = ({ places, deletePlace, setOpenPopup }) => {
     return places.map((place) => {
       return (
         <TimelineItem key={place.id}>
-          <TimelineOppositeContent>{place.time}</TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineDot />
+          <TimelineOppositeContent sx={{ fontSize: '1.2rem' }}>
+            {place.time}
+          </TimelineOppositeContent>
+          <TimelineSeparator color="secondary">
+            <TimelineDot color="secondary" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>

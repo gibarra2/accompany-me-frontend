@@ -6,7 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-const TripCard = ({ location, dates, tripID }) => {
+const TripCard = ({ location, dates, tripID, country }) => {
+  console.log(location);
+  console.log(`https://source.unsplash.com/random/400x300/?${country}`);
   const navigate = useNavigate();
   return (
     <>
@@ -14,9 +16,9 @@ const TripCard = ({ location, dates, tripID }) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
-            image="/pexels-oleksandr-pidvalnyi-1004584.jpg"
-            alt="image of plane flying"
+            height="160"
+            image={`https://source.unsplash.com/random/400x300/?${country}`}
+            alt={`Stock image representing ${location}`}
           />
           <CardContent>
             <Typography variant="h5">{location}</Typography>

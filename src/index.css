@@ -3,11 +3,10 @@
 body {
   margin: 0;
   font-family: 'Figtree';
+  background-color: #C0AAA3;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-color: #C0AAA3;
-  
 }
 
 code {

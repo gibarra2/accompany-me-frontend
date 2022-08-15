@@ -12,6 +12,7 @@ const TripList = ({ tripList }) => {
         <Grid item xs={12} sm={6} md={4} lg={3} key={trip.id}>
           <TripCard
             location={location}
+            country={trip.country}
             dates={dates}
             tripID={trip.id}
             key={trip.id}
