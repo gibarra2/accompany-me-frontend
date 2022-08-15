@@ -12,7 +12,7 @@ const DayTimeline = ({ places, deletePlace, setOpenPopup }) => {
   const TimelineItems = (places) => {
     return places.map((place) => {
       return (
-        <TimelineItem>
+        <TimelineItem key={place.id}>
           <TimelineOppositeContent>{place.time}</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />

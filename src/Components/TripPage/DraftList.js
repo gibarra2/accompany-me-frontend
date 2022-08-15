@@ -5,15 +5,17 @@ import Grid from '@mui/material/Grid';
 const DraftList = ({ places, deletePlace, setOpenPopup }) => {
   const placeList = places.map((place) => {
     return (
-      <Grid item xs={6}>
+      <Grid item xs={6} key={place.id}>
         <PlaceCard
           id={place.id}
           name={place.name}
           address={place.address}
           note={place.note}
+          category={place.category}
           deletePlace={deletePlace}
           setOpenPopup={setOpenPopup}
           place={place}
+          key={place.id}
         />
       </Grid>
     );
