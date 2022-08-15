@@ -91,6 +91,10 @@ const Trip = () => {
     setToggleForm(true);
   };
 
+  if (!Object.keys(tripDetails).length) {
+    return <></>;
+  }
+
   return (
     <>
       <Typography variant="h3" mt={3} gutterBottom className="title">
@@ -101,8 +105,14 @@ const Trip = () => {
       </Typography>
       <div className="trip-page-container">
         <Container className="itinerary-container">
-          <Typography variant="h4">Travel Buddies</Typography>
-          <UserList users={tripDetails.users} />
+          {tripDetails.users.length > 1 ? (
+            <>
+              <Typography variant="h4">Travel Buddies</Typography>
+              <UserList users={tripDetails.users} />
+            </>
+          ) : (
+            <></>
+          )}
           <Typography variant="h4">Itinerary</Typography>
           <Itinerary
             places={scheduledPlaces}
